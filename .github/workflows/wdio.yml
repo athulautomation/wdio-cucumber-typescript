@@ -1,18 +1,14 @@
-# .github/workflows/wdio.yml
 name: Run WebdriverIO Tests on Selenium Grid
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_dispatch:  # Manual trigger only
 
 jobs:
   test:
     runs-on: ubuntu-latest
     services:
       selenium:
-        image: selenium/standalone-chrome:4.21.0-20240702
+        image: selenium/standalone-chrome:latest
         ports:
           - 4444:4444
         options: >-
