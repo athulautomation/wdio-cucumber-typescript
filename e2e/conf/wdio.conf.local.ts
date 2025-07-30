@@ -1,13 +1,5 @@
-const { removeSync } = require('fs-extra');
-const { generate } = require('multiple-cucumber-html-reporter');
-import * as os from "os";
-let argv = require('minimist')(process.argv.slice(2));
-let browser = (argv.browser != undefined) ? argv.browser : 'chrome';
-let executionTag = (argv.tag != undefined) ? argv.tag : '@smoke'
-
 export const config: WebdriverIO.Config = {
     //
-    
     // ====================
     // Runner Configuration
     // ====================
@@ -31,7 +23,7 @@ export const config: WebdriverIO.Config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './e2e/features/**/*.feature'
+        '../features/**/*.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -110,7 +102,7 @@ export const config: WebdriverIO.Config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
+    // services: [],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -133,13 +125,7 @@ export const config: WebdriverIO.Config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: [
-        ['cucumberjs-json', {
-            jsonFolder: './e2e/reports/cucumber',
-            language: 'en',
-        }
-        ]
-    ],
+    reporters: ['spec'],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
@@ -162,7 +148,7 @@ export const config: WebdriverIO.Config = {
         // <boolean> fail if there are any undefined or pending steps
         strict: false,
         // <string> (expression) only execute the features or scenarios with tags matching the expression
-        tagExpression: executionTag,
+        tagExpression: '@smoke',
         // <number> timeout for step definitions
         timeout: 60000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
@@ -183,9 +169,6 @@ export const config: WebdriverIO.Config = {
      * @param {object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    onPrepare: async function (config: any, capabilities: any){
-        await removeSync('./e2e/reports/cucumber/');
-    },
     // onPrepare: function (config, capabilities) {
     // },
     /**
@@ -328,13 +311,6 @@ export const config: WebdriverIO.Config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    onComplete: function (exitCode: any, config:any, capabilities:any, results: any) {
-        generate({
-            jsonDir: './e2e/reports/cucumber/',
-            reportPath: './e2e/reports/cucumber/',
-        });
-        
-    },
     // onComplete: function(exitCode, config, capabilities, results) {
     // },
     /**

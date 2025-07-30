@@ -4,7 +4,7 @@
   "description": "Automation frmework using WebdriverIO, Cucumber, and TypeScript",
   "main": "index.js",
   "scripts": {
-    "test": "npx wdio ./e2e/conf/wdio.conf.ts",
+    "test": "npx wdio ./e2e/conf/wdio.conf.local.ts",
     "wdio": "wdio run ./wdio.conf.ts"
   },
   "repository": {
