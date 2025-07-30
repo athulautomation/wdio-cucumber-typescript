@@ -1,12 +1,12 @@
-Feature: Verify login
+Feature: The Internet Guinea Pig Website
 
-    @smoke
-    Scenario Outline: Verify I can login successfully
-        Given I am on the login page <data>
-        # When I enter my credentils on the login page
-        #     And I clicked submit on the login page
-        # Then I see the Landing page
+  @smoke
+  Scenario Outline: As a user, I can log into the secure area
+    Given I am on the login page
+    When I login with <username> and <password>
+    Then I should see a flash message saying <message>
 
-        Examples:
-            | data | 
-            | Portal-LoginData.json  | 
+    Examples:
+      | username | password             | message                        |
+      | tomsmith | SuperSecretPassword! | You logged into a secure area! |
+      | foobar   | barfoo               | Your username is invalid!      |

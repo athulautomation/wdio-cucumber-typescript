@@ -1,31 +1,25 @@
 {
     "compilerOptions": {
-        "moduleResolution": "node",
         "module": "commonjs",
-        "target": "es2022",
+        "target": "es6",
         "lib": [
-            "es2022",
+            "es6",
+            "es5",
+            "es2015",
             "dom"
         ],
         "types": [
             "node",
+            "webdriverio/async",
             "@wdio/globals/types",
             "expect-webdriverio",
             "@wdio/cucumber-framework"
         ],
-        "skipLibCheck": true,
-        "noEmit": true,
-        "allowImportingTsExtensions": true,
-        "resolveJsonModule": true,
-        "isolatedModules": true,
+        "outDir": "./dist",
+        "declaration": true,
+        "noImplicitThis": false,
         "strict": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true
+        "useUnknownInCatchVariables": false
     },
-    "include": [
-        "test",
-        "wdio.conf.ts",
-        "features"
-    ]
+
 }
