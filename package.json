@@ -1,0 +1,26 @@
+{
+  "name": "wdio-cucumber-typescript",
+  "version": "1.0.0",
+  "description": "Automation frmework using WebdriverIO, Cucumber, and TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/athulautomation/wdio-cucumber-typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/athulautomation/wdio-cucumber-typescript/issues"
+  },
+  "homepage": "https://github.com/athulautomation/wdio-cucumber-typescript#readme",
+  "devDependencies": {
+    "@wdio/cli": "^9.18.4",
+    "@wdio/cucumber-framework": "^9.18.0",
+    "@wdio/local-runner": "^9.18.4",
+    "@wdio/spec-reporter": "^9.18.0"
+  }
+}
