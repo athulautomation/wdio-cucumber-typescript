@@ -1,7 +1,11 @@
+const uniqueUserDataDir = `/tmp/chrome-profile-${Date.now()}`;
 export const config: WebdriverIO.Config = {
     //
     // ====================
     // Runner Configuration
+    hostname: 'localhost',
+    port: 4444,
+    path: '/wd/hub',
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
@@ -52,7 +56,13 @@ export const config: WebdriverIO.Config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+        args: [
+          `--user-data-dir=${uniqueUserDataDir}`,
+          // other args
+        ]
+    }
     }],
 
     //
