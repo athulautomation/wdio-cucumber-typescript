@@ -1,0 +1,38 @@
+# .github/workflows/wdio.yml
+name: Run WebdriverIO Tests on Selenium Grid
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      selenium:
+        image: selenium/standalone-chrome:4.21.0-20240702
+        ports:
+          - 4444:4444
+        options: >-
+          --shm-size 2g
+          --health-cmd "curl -f http://localhost:4444/wd/hub/status || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run WebdriverIO tests
+        run: npm run wdio
